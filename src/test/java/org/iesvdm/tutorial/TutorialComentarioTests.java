@@ -40,6 +40,20 @@ public class TutorialComentarioTests {
     }
 
     @Test
+    @Order(0)
+    public void pruebaFetchLazyEager() {
+
+        Tutorial tutorial = tutorialRepository.save(Tutorial.builder()
+                                                            .titulo("Titulo uno")
+                                                            .build());
+
+        Tutorial tutorial2 = tutorialRepository.findById(tutorial.getId()).orElse(null);
+
+        Assertions.assertEquals(tutorial,tutorial2);
+
+    }
+
+    @Test
     @Order(1)
     public void grabarPadreAHijosPorColeccion() {
 

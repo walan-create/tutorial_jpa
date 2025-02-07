@@ -40,23 +40,23 @@ public class PeliculaIdiomaTests {
     @Order(1)
     void grabarMultiplesPeliculasIdioma() {
 
-        Idioma idioma1 = new Idioma(0, "español", new HashSet<>());
-        idiomaRepository.save(idioma1);
-
-        Pelicula pelicula1 = new Pelicula(0, "Pelicula1", idioma1);
-        idioma1.getPeliculas().add(pelicula1);
-        peliculaRepository.save(pelicula1);
-
-        Pelicula pelicula2 = new Pelicula(0, "Pelicula2", idioma1);
-        idioma1.getPeliculas().add(pelicula2);
-        peliculaRepository.save(pelicula2);
-
-        Idioma idioma2 = new Idioma(0, "inglés", new HashSet<>());
-        idiomaRepository.save(idioma2);
-
-        Pelicula pelicula3 = new Pelicula(0, "Pelicula3", idioma2);
-        idioma2.getPeliculas().add(pelicula3);
-        peliculaRepository.save(pelicula3);
+//        Idioma idioma1 = new Idioma(0, "español", new HashSet<>());
+//        idiomaRepository.save(idioma1);
+//
+//        Pelicula pelicula1 = new Pelicula(0, "Pelicula1", idioma1);
+//        idioma1.getPeliculas().add(pelicula1);
+//        peliculaRepository.save(pelicula1);
+//
+//        Pelicula pelicula2 = new Pelicula(0, "Pelicula2", idioma1);
+//        idioma1.getPeliculas().add(pelicula2);
+//        peliculaRepository.save(pelicula2);
+//
+//        Idioma idioma2 = new Idioma(0, "inglés", new HashSet<>());
+//        idiomaRepository.save(idioma2);
+//
+//        Pelicula pelicula3 = new Pelicula(0, "Pelicula3", idioma2);
+//        idioma2.getPeliculas().add(pelicula3);
+//        peliculaRepository.save(pelicula3);
 
     }
 

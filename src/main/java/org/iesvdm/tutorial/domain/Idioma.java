@@ -29,9 +29,14 @@ public class Idioma {
 
     private String nombre;
 
-    @OneToMany(mappedBy = "idioma", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "idioma")
     //@JsonIgnore
     //@JsonManagedReference
     private Set<Pelicula> peliculas = new HashSet<>();
+
+    @OneToMany(mappedBy = "idiomaOriginal")
+    //@JsonIgnore
+    //@JsonManagedReference
+    private Set<Pelicula> peliculasOriginales = new HashSet<>();
 
 }
