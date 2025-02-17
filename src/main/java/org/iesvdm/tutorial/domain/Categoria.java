@@ -1,11 +1,17 @@
 package org.iesvdm.tutorial.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.core.util.Json;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
@@ -23,8 +29,14 @@ public class Categoria {
     @Column(length = 30, nullable = false)
     String nombre;
 
-    @ManyToMany(mappedBy = "categorias")
-    private Set<Pelicula> peliculas;
+    @OneToMany(mappedBy = "categoria")
+    @JsonIgnore
+    private Set<PeliculaCategoria> peliculas;
+
+    @Column(name = "ultima_actualizacion")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", shape = JsonFormat.Shape.STRING)
+    private LocalDateTime ultimaActualizacion;
 
 
 }

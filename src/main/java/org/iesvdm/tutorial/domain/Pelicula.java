@@ -22,6 +22,12 @@ import java.util.Set;
 @JsonSerialize(using = PeliculaSerializer.class)
 public class Pelicula {
 
+    public Pelicula(long id, String titulo, Idioma idioma) {
+        this.id = id;
+        this.titulo = titulo;
+        this.idioma = idioma;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
@@ -59,10 +65,10 @@ public class Pelicula {
 
     private LocalDateTime ultimaActualizacion;
 
-
     /*Tenemos 2 maneras de hacer el ManyToMany
     * 1. */
-    @OneToMany
+    @OneToMany(mappedBy = "pelicula")
+    @JsonIgnore
     private Set<PeliculaCategoria> categorias;
 
     @ManyToMany(mappedBy = "peliculas")
