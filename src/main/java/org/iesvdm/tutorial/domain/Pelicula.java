@@ -9,12 +9,15 @@ import org.iesvdm.tutorial.serializer.PeliculaSerializer;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Builder
+
 @Entity
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
@@ -31,10 +34,8 @@ public class Pelicula {
 
     private Integer anyoLanzamiento;
 
-    // Lo que está a la izquierda siempre hace referencia a la clase actual
-    // En este caso Many hace referencia a Pelicula y One a Idioma
-    // (En Idioma será al revés osea @OneToMany)
     @ManyToOne
+    //@JsonBackReference
     @ToString.Exclude
     private Idioma idioma;
 
@@ -52,20 +53,23 @@ public class Pelicula {
     @Column(precision = 5, scale = 2)
     private BigDecimal replacementCost;
 
-    private ClasificacionEnum clasificacion;
+    private ClasificacionEnum clasificacionEnum;
 
     @ManyToMany(mappedBy = "peliculas")
-    private Set<CaracteristicaEspecial> caracteristicasEspeciales;
+    @Builder.Default
+    private Set<CaracteristicaEspecial> caracteristicasEspeciales = new HashSet<>();
 
     private LocalDateTime ultimaActualizacion;
 
+//    @ManyToMany
+//    private Set<Categoria> categorias;
 
-    /*Tenemos 2 maneras de hacer el ManyToMany
-    * 1. */
-    @OneToMany
-    private Set<PeliculaCategoria> categorias;
+    @OneToMany( mappedBy = "pelicula")
+    @Builder.Default
+    private Set<PeliculaCategoria> peliculaCategorias = new HashSet<>();
 
     @ManyToMany(mappedBy = "peliculas")
-    private Set<Actor> actores;
+    @Builder.Default
+    private Set<Actor> actores = new HashSet<>();
 
 }

@@ -1,17 +1,16 @@
 package org.iesvdm.tutorial.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+
 @Entity
 public class Categoria {
 
@@ -21,10 +20,14 @@ public class Categoria {
     private Long id;
 
     @Column(length = 30, nullable = false)
-    String nombre;
+    private String nombre;
+//
+//    @ManyToMany( mappedBy = "categorias")
+//    private Set<Pelicula> peliculas;
 
-    @ManyToMany(mappedBy = "categorias")
-    private Set<Pelicula> peliculas;
-
+    @OneToMany(mappedBy = "categoria")
+    //Se rompe el bucle hacia PeliculaCategoria, que a su vez no continua hacia Pelicula
+    @ToString.Exclude
+    private Set<PeliculaCategoria> peliculasCategorias;
 
 }

@@ -1,15 +1,15 @@
 package org.iesvdm.tutorial.domain;
 
+
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+
 @Entity
 public class PeliculaCategoria {
 
@@ -22,6 +22,8 @@ public class PeliculaCategoria {
     private Categoria categoria;
 
     @ManyToOne
+    //Se rompe el bucle hacia pelicula
+    @ToString.Exclude
     private Pelicula pelicula;
 
 }

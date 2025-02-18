@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -13,17 +14,16 @@ import java.util.Set;
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-
-public class CaracteristicaEspecial {
+public class ToyWithMapsId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private long id;
+    private Long id;
 
-    private String caracteristica;
+    private String name;
 
-    @ManyToMany
-    private Set<Pelicula> peliculas;
+    @OneToMany(mappedBy = "toy")
+    private Set<CatToyUsageWithMapsId> catToyUsages = new HashSet<>();
 
 }

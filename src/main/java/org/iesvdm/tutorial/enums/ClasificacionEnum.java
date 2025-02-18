@@ -5,4 +5,5 @@ public enum ClasificacionEnum {
     INFANTIL,
     JUVENIL,
     ADULTO
+
 }

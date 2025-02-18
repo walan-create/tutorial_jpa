@@ -1,23 +1,23 @@
 package org.iesvdm.tutorial.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+
 @Entity
 public class Socio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private Long id;
 
-    @Column(unique = true, length = 9)
+    @Column(length = 9, unique = true)
     private String nif;
 
     @Column(length = 30)
@@ -26,9 +26,7 @@ public class Socio {
     @Column(length = 120)
     private String apellidos;
 
-    @OneToOne(
-            mappedBy = "socio"
-    )
+    @OneToOne(mappedBy = "socio")
     private Tarjeta tarjeta;
 
 }

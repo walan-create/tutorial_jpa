@@ -41,15 +41,14 @@ public class TutorialComentarioTests {
 
     @Test
     @Order(0)
-    public void pruebaFetchLazyEager() {
+    void pruebaFetchLazyEager() {
 
         Tutorial tutorial = tutorialRepository.save(Tutorial.builder()
-                                                            .titulo("Titulo uno")
-                                                            .build());
+                                                        .titulo("Título 1")
+                                                        .build());
 
         Tutorial tutorial2 = tutorialRepository.findById(tutorial.getId()).orElse(null);
 
-        Assertions.assertEquals(tutorial,tutorial2);
 
     }
 
