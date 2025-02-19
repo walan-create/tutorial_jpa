@@ -17,7 +17,6 @@ import java.util.Set;
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Builder
-
 @Entity
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
@@ -60,9 +59,6 @@ public class Pelicula {
     private Set<CaracteristicaEspecial> caracteristicasEspeciales = new HashSet<>();
 
     private LocalDateTime ultimaActualizacion;
-
-//    @ManyToMany
-//    private Set<Categoria> categorias;
 
     @OneToMany( mappedBy = "pelicula")
     @Builder.Default
